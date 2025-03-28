@@ -52,4 +52,16 @@ class neovim (
     path    => '/usr/sbin:/usr/bin:/sbin:/bin',
     require => Exec['compile_neovim', 'install_neovim'],
   }
+  -> vcsrepo { "/home/${user}/.config/neovim":
+    ensure   => present,
+    provider => git,
+    source   => 'https://github.com/Tonguechaude/neovim.git',
+    owner    => $user,
+    group    => $group,
+    require  => Package['git'],
+  }
+  -> file { "/home/${user}/.config/neovim/nvim":
+    ensure => link,
+    target => "/home/${user}/.config/nvim",
+  }
 }
