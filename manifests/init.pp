@@ -46,7 +46,7 @@ class neovim (
     require => Exec['compile_neovim'],
   }
   -> exec { 'clean workstation':
-    command => 'rm -rf puppet7-release-jammy.deb neovim',
+    command => 'rm -rf puppet7-release-jammy.deb .config/neovim',
     cwd     => "/home/${user}/",
     user    => $user,
     path    => '/usr/sbin:/usr/bin:/sbin:/bin',
