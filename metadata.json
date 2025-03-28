@@ -1,0 +1,34 @@
+{
+  "name": "tongue-neovim",
+  "version": "0.1.0",
+  "author": "TongueChaude",
+  "summary": "",
+  "license": "GNU",
+  "source": "",
+  "dependencies": [
+
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "10"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "18.04"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 7.24 < 9.0.0"
+    }
+  ],
+  "pdk-version": "3.2.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates#3.2.0",
+  "template-ref": "tags/3.2.0-0-gb257ef1"
+}
