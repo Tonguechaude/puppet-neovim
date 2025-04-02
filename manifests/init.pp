@@ -2,29 +2,34 @@
 #
 # A description of what this class does
 #
-# @param user User account name
-# @param group User account group name
+# @param user     User account name
+# @param group    User account group name
+# @param keepvim  Boolean value to let the user the choice to keep vim installed
 #
 # @example
 #   include neovim
 class neovim (
   String[1] $user = 'tongue',
   String[1] $group = 'tongue',
+
+  Boolean   $delete_vim = false,
 ) {
   package { ['git', 'cmake', 'ninja-build', 'gettext', 'curl', 'build-essential']:
     ensure => present,
   }
-  -> package { 'vim':
-    ensure => absent,
-  }
-  -> file { ['/usr/bin/vi', '/usr/bin/vim.tiny', '/usr/bin/vimtutor', "/home/${user}/.vim"]:
-    ensure => absent,
+  if $keepvim {
+    -> package { 'vim':
+      ensure => absent,
+    }
+    -> file { ['/usr/bin/vi', '/usr/bin/vim.tiny', '/usr/bin/vimtutor', "/home/${user}/.vim"]:
+      ensure => absent,
+    }
   }
   -> file { "/home/${user}/.config":
     ensure => directory,
     owner  => $user,
     group  => $group,
-    mode   => '0755',
+    mode   => '0700',
   }
   file { '/opt':
     ensure => directory,
