@@ -34,7 +34,6 @@ describe 'neovim' do
 
         it { is_expected.to contain_vcsrepo('/home/tongue/.config/neovimconf') }
         it { is_expected.to contain_vcsrepo('/opt/neovim') }
-
       end
 
       context 'with custom parameters' do
@@ -46,7 +45,7 @@ describe 'neovim' do
           '/usr/bin/vi',
           '/usr/bin/vim.tiny',
           '/usr/bin/vimtutor',
-          '/home/test/.vim'
+          '/home/test/.vim',
         ].each do |path|
           it { is_expected.to contain_file(path).with_ensure('absent') }
         end
