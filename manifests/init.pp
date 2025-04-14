@@ -17,15 +17,15 @@ class neovim (
   package { ['git', 'cmake', 'ninja-build', 'gettext', 'curl', 'build-essential']:
     ensure => present,
   }
-  if $keepvim {
-    -> package { 'vim':
+  if $delete_vim {
+    package { 'vim':
       ensure => absent,
     }
     -> file { ['/usr/bin/vi', '/usr/bin/vim.tiny', '/usr/bin/vimtutor', "/home/${user}/.vim"]:
       ensure => absent,
     }
   }
-  -> file { "/home/${user}/.config":
+  file { "/home/${user}/.config":
     ensure => directory,
     owner  => $user,
     group  => $group,
